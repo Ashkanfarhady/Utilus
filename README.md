@@ -31,7 +31,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-The runtime implementation uses only the Python standard library. `pytest` is listed for tests.
+The runtime implementation uses only the Python standard library. `pytest` and `pytest-cov` are listed for tests and coverage.
 
 ## Make Commands
 
