@@ -20,4 +20,16 @@ Help prepare this repository for a data-focused home assessment. Set up clear do
 
 ## Assessment Work Log
 
-The full assessment prompt and implementation-specific AI interactions will be added here once the prompt and CSV inputs are available.
+### Implementation Prompt
+
+**Professionalized prompt used for documentation:**
+
+```text
+Implement a Python CLI for the provided subscription analytics assessment. The tool should read customers and subscriptions CSV files, validate inputs, calculate monthly MRR, churned customers, and 3-month signup cohort retention, write the report as JSON, include focused tests, document design decisions, and maintain a clean incremental commit history.
+```
+
+**AI assistance provided:**
+
+- Interpreted the business rules and identified assumptions to document.
+- Planned a small Python project structure with separate modules for data loading, metrics, reporting, and CLI behavior.
+- Assisted with implementation, tests, and documentation updates.
