@@ -16,13 +16,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("output_json", type=Path)
     args = parser.parse_args(argv)
 
+    errors: list[str] = []
     try:
         customers = load_customers(args.customers_csv)
-        subscriptions = load_subscriptions(args.subscriptions_csv)
-        report = build_report(customers, subscriptions)
     except InputValidationError as exc:
-        print(f"Input error: {exc}", file=sys.stderr)
+        customers = []
+        errors.extend(exc.messages)
+    try:
+        subscriptions = load_subscriptions(args.subscriptions_csv)
+    except InputValidationError as exc:
+        subscriptions = []
+        errors.extend(exc.messages)
+
+    if errors:
+        print("Input error:", file=sys.stderr)
+        for error in errors:
+            print(f"- {error}", file=sys.stderr)
         return 1
+
+    report = build_report(customers, subscriptions)
 
     for issue in report["data_quality_issues"]:
         print(f"{issue['severity'].upper()}: {issue['message']}", file=sys.stderr)

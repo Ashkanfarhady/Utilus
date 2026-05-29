@@ -28,6 +28,28 @@ def test_loader_fails_with_clear_message_for_missing_required_columns(tmp_path: 
         raise AssertionError("expected InputValidationError")
 
 
+def test_cli_reports_multiple_validation_errors_across_input_files(tmp_path: Path, capsys) -> None:
+    customers_csv = write(
+        tmp_path / "customers.csv",
+        "customer_id,signup_date,country\n"
+        "c1,2024-13-01,NL\n",
+    )
+    subscriptions_csv = write(
+        tmp_path / "subscriptions.csv",
+        "customer_id,start_date,end_date,plan,monthly_price\n"
+        "c1,2024-01-01,2024-02-30,basic,thirty\n",
+    )
+    output_json = tmp_path / "report.json"
+
+    assert main([str(customers_csv), str(subscriptions_csv), str(output_json)]) == 1
+
+    captured = capsys.readouterr()
+    assert "malformed signup_date" in captured.err
+    assert "malformed end_date" in captured.err
+    assert "malformed monthly_price" in captured.err
+    assert not output_json.exists()
+
+
 def test_report_surfaces_unknown_customer_issue(tmp_path: Path) -> None:
     customers_csv = write(
         tmp_path / "customers.csv",

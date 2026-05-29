@@ -38,8 +38,10 @@ python3 -m pytest -q
 The provided CSV files currently include malformed fields that correctly trigger validation failures:
 
 - `customers.csv` row 20 has invalid `signup_date` value `2024-13-05`.
+- `customers.csv` row 40 contains duplicate `customer_id` value `C038`.
 - `subscriptions.csv` row 9 has invalid `end_date` value `2024-02-30`.
 - `subscriptions.csv` row 31 has invalid `monthly_price` value `thirty`.
+- `subscriptions.csv` row 37 has `end_date` before `start_date`.
 
 I did not alter the input files; the validation behavior is part of the solution.
 
