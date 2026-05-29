@@ -17,6 +17,12 @@ The command writes a JSON report with:
 
 If required columns are missing or fields are malformed, the command exits with a non-zero status and prints a clear input error.
 
+CLI help is available with:
+
+```bash
+python3 main.py --help
+```
+
 ## Setup
 
 ```bash
@@ -27,10 +33,42 @@ pip install -r requirements.txt
 
 The runtime implementation uses only the Python standard library. `pytest` is listed for tests.
 
+## Make Commands
+
+```bash
+make help
+make install
+make test
+make coverage
+make run
+make docker-build
+make docker-run
+```
+
 ## Tests
 
 ```bash
 python3 -m pytest -q
+```
+
+Coverage:
+
+```bash
+python3 -m pytest --cov=utilus_analytics --cov-report=term-missing
+```
+
+## Docker
+
+Build the image:
+
+```bash
+docker build -t utilus-analytics .
+```
+
+Run the CLI in Docker:
+
+```bash
+docker run --rm -v "$(pwd):/app" utilus-analytics customers.csv subscriptions.csv output.json
 ```
 
 ## Notes on Provided CSVs
@@ -56,6 +94,8 @@ I did not alter the input files; the validation behavior is part of the solution
 │   └── ASSUMPTIONS.md
 ├── tests/
 ├── utilus_analytics/
+├── Dockerfile
+├── Makefile
 ├── main.py
 ├── requirements.txt
 └── README.md

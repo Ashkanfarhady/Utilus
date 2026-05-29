@@ -10,10 +10,18 @@ from utilus_analytics.report import build_report
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Generate subscription analytics from CSV exports.")
-    parser.add_argument("customers_csv", type=Path)
-    parser.add_argument("subscriptions_csv", type=Path)
-    parser.add_argument("output_json", type=Path)
+    parser = argparse.ArgumentParser(
+        description="Generate a JSON subscription analytics report from customer and subscription CSV exports.",
+        epilog=(
+            "Example: python main.py customers.csv subscriptions.csv output.json\n\n"
+            "The report includes monthly MRR, monthly churned customers, "
+            "3-month signup cohort retention, and non-fatal data quality warnings."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument("customers_csv", type=Path, help="Path to customers.csv")
+    parser.add_argument("subscriptions_csv", type=Path, help="Path to subscriptions.csv")
+    parser.add_argument("output_json", type=Path, help="Path where the JSON report will be written")
     args = parser.parse_args(argv)
 
     errors: list[str] = []

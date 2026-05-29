@@ -2,5 +2,7 @@
 __pycache__/
 .pytest_cache/
 *.pyc
+.coverage
+htmlcov/
 output.json
 *.tmp

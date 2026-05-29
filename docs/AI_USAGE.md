@@ -33,3 +33,17 @@ Implement a Python CLI for the provided subscription analytics assessment. The t
 - Interpreted the business rules and identified assumptions to document.
 - Planned a small Python project structure with separate modules for data loading, metrics, reporting, and CLI behavior.
 - Assisted with implementation, tests, and documentation updates.
+
+### Tooling Improvement Prompt
+
+**Professionalized prompt used for documentation:**
+
+```text
+Improve the developer experience by adding Docker support, a Makefile with common run/test/coverage targets, and clearer CLI help text.
+```
+
+**AI assistance provided:**
+
+- Added Docker and Make-based workflows for local and containerized execution.
+- Added a Make coverage command and documented the workflow.
+- Expanded CLI help text with argument descriptions and an example.
