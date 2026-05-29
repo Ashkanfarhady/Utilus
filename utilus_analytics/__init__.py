@@ -1,0 +1,2 @@
+"""Subscription analytics report generator."""
+
